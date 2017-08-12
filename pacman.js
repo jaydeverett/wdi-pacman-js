@@ -13,29 +13,31 @@ var inky = {
 };
 
 var blinky = {
-  menu_option: '1',
+  menu_option: '2',
   name: 'Blinky',
   colour: 'Cyan',
   character: 'Speedy',
   edible: false
 };
 
-var Pinky = {
-  menu_option: '1',
+var pinky = {
+  menu_option: '3',
   name: 'Pinky',
   colour: 'Pink',
   character: 'Bashful',
   edible: false
 };
 
-var Clyde = {
-  menu_option: '1',
+var clyde = {
+  menu_option: '4',
   name: 'Clyde',
   colour: 'Orange',
   character: 'Pokey',
   edible: false
 };
 
+
+var ghosts = [inky, blinky, pinky, clyde];
 
 // Draw the screen functionality
 function drawScreen() {
@@ -58,6 +60,10 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat Inky');
+  console.log('(2) Eat Blinky');
+  console.log('(3) Eat Pinky');
+  console.log('(4) Eat Clyde');
   console.log('(q) Quit');
 }
 
@@ -73,6 +79,18 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost(ghost) {
+
+  if (ghost["edible"] === false) {
+    console.log('\nWawa. ' + ghost.name + " killed Pac-Man!");
+    lives -= 1;
+  }
+  else if (ghost["edible"] === true) {
+  console.log('\nGulp!' + " Pac-Man ate " + ghost.name);
+  score += 200;
+  }
+}
+
 
 // Process Player's Input
 function processInput(key) {
@@ -83,6 +101,18 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      eatGhost(ghosts[0]);
+      break;
+    case '2':
+      eatGhost(ghosts[1]);
+      break;
+    case '3':
+      eatGhost(ghosts[2]);
+      break;
+    case '4':
+      eatGhost(ghosts[3]);
       break;
     default:
       console.log('\nInvalid Command!');
