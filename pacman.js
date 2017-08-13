@@ -65,13 +65,34 @@ function displayMenu() {
       console.log("No Power Pellets left!");
     }
     else {
-  console.log('(p) Eat Power Pellet');
-  }
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+      console.log('(p) Eat Power Pellet');
+    }
+    if (inky["edible"] === true) {
+      console.log('(1) Eat Inky (edible)');
+    }
+    else {
+      console.log('(1) Eat Inky');
+    }
+    if (blinky["edible"] === true) {
+      console.log('(2) Eat Blinky (edible)');
+    }
+    else {
+      console.log('(2) Eat Blinky');
+    }
+    if (pinky["edible"] === true) {
+      console.log('(3) Eat Pinky (edible)');
+    }
+    else {
+      console.log('(3) Eat Pinky');
+    }
+    if (clyde["edible"] === true) {
+      console.log('(4) Eat Clyde (edible)');
+    }
+    else {
+      console.log('(4) Eat Clyde');
+    }
   console.log('(q) Quit');
+
 }
 
 function displayPrompt() {
@@ -96,6 +117,7 @@ function eatGhost(ghost) {
   else if (ghost["edible"] === true) {
   console.log('\nGulp!' + " Pac-Man ate " + ghost.name);
   score += 200;
+  ghost["edible"] = false;
   }
 }
 
@@ -167,7 +189,7 @@ drawScreen();
 stdin.on('data', function(key) {
   process.stdout.write(key);
   processInput(key);
-  setTimeout(drawScreen, 300); // The command prompt will flash a message for 300 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
+  setTimeout(drawScreen, 800); // The command prompt will flash a message for 300 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
 });
 
 // Player Quits
